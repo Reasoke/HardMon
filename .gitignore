@@ -441,3 +441,5 @@ FodyWeavers.xsd
 *.exe
 *.out
 *.app
+/hardmon.old/
+/mobileapp.old/

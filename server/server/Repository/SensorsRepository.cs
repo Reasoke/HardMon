@@ -123,7 +123,7 @@ SELECT S.sensorId, @alert FROM Sensor as S WHERE S.authToken = @authToken",
     public async Task<IEnumerable<AlertDto>> GetAlerts(int sensorId,
         int take, int skip, DateTime? from, DateTime? to) {
         return await GetConnection().QueryAsync<AlertDto>(
-                @"SELECT sensorAlertId as Id, sensorId, created, alert as AlertMessage, checked
+                @"SELECT sensorAlertId as Id, sensorId, created, alert as AlertMessage, checked as IsChecked
 FROM SensorAlerts
 WHERE sensorId = @sensorId and (@from IS NULL OR created >= @from) AND (@to IS NULL OR created <= @to)
 ORDER BY created DESC
@@ -133,7 +133,7 @@ OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY",
 
     public async Task<AlertDto> GetAlertDetails(int alertId) {
         return await GetConnection().QueryFirstOrDefaultAsync<AlertDto>(
-            @"SELECT sensorAlertId as Id, sensorId, created, alert as AlertMessage, checked
+            @"SELECT sensorAlertId as Id, sensorId, created, alert as AlertMessage, checked as IsChecked
 FROM SensorAlerts
 WHERE sensorAlertId = @alertId",
             new { alertId });
