@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:padding="16dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/alertTitle"
+            android:text="Alert message"
+            android:textSize="26sp"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:background="#9500BCD4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <TextView
+            android:id="@+id/alertMessageText"
+            android:textSize="24sp"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <TextView
+            android:id="@+id/createdText"
+            android:textSize="20sp"
+            android:textColor="#666"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <CheckBox
+            android:id="@+id/isCheckedCheckbox"
+            android:text="Mark as checked"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <Button
+            android:id="@+id/saveButton"
+            android:text="Save"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#9500BCD4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+</LinearLayout>
