@@ -15,7 +15,12 @@ public class CheckAccountAttribute : Attribute, IAsyncActionFilter {
 
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next) {
 
-        if (!context.ActionArguments.TryGetValue("accountId", out var obj) || obj is not int accountId)
+        var accountId = 0;
+        if (context.ActionArguments.TryGetValue("accountId", out var obj) && obj is int intValue)
+            accountId = intValue;
+        else if (context.RouteData.Values.TryGetValue("accountId", out obj) && int.TryParse(obj.ToString(), out int intValue2))
+            accountId = intValue2;
+        if (accountId == 0)
             throw new DomainException(HttpStatusCode.BadRequest, "Missed 'accountId' action argument.");
 
         if (context.HttpContext.User.Identity is not HardMonUserIdentity identity || !identity.IsAuthenticated)

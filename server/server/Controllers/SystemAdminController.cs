@@ -62,10 +62,46 @@ public class SystemAdminController : BaseApiController {
     [HttpDelete, Route("api/sysAdmin/subscription/{subscriptionId:int}")]
     public async Task DeleteSubscription(int subscriptionId) {
         await systemAdminService.DeleteSubscription(subscriptionId);
-    } 
-    
-    
-    
+    }
+
+
+
+    [HttpGet, Route("api/sysAdmin/userType")]
+    public async Task<IEnumerable<UserTypeDto>> GetUserTypes() {
+        return await systemAdminService.GetUserTypes();
+    }
+    [HttpPost, Route("api/sysAdmin/userType")]
+    public async Task AddUserType(UserTypeRequest request) {
+        await systemAdminService.AddUserTypes(request);
+    }
+    [HttpDelete, Route("api/sysAdmin/userType/{userTypeId:int}")]
+    public async Task DeleteUserType(int userTypeId) {
+        await systemAdminService.DeleteUserType(userTypeId);
+    }
+
+
+    [HttpGet, Route("api/sysAdmin/account")]
+    public async Task<IEnumerable<AccountAdminDto>> GetAccounts() {
+        return await systemAdminService.GetAccounts();
+    }
+    [HttpDelete, Route("api/sysAdmin/account/{accountId:int}")]
+    public async Task DeleteAccount(int accountId) {
+        await systemAdminService.DeleteAccount(accountId);
+    }
+
+
+
+    [HttpGet, Route("api/sysAdmin/user")]
+    public async Task<IEnumerable<UserDto>> GetUsers() {
+        return await systemAdminService.GetUsers();
+    }
+    [HttpDelete, Route("api/sysAdmin/user/{userId:int}")]
+    public async Task DeleteUser(int userId) {
+        await systemAdminService.DeleteUser(userId);
+    }
+
+
+
     [HttpGet, Route("api/sysAdmin/subscriptionSensorType")]
     public async Task<IEnumerable<SubscriptionSensorTypeDto>> GetSubscriptionSensorTypes() {
         return await systemAdminService.GetSubscriptionSensorTypes();

@@ -1,0 +1,109 @@
+<template>
+  <Header />
+  <main>
+    <div class="title_box">
+      <div class="title_text">
+        <h1>HardMon</h1>
+        <h2>System for monitoring</h2>
+      </div>
+      <div class="title_img">
+        <img alt="Vue logo" src="../assets/hardware-monitoring-banner.svg">
+      </div>
+    </div>
+
+    <div id="info">
+      <div id="about" class="promo_box">
+        <div class="promo_img">
+          <img alt="promo image" src="../assets/promo.jpg">
+        </div>
+        <div class="promo_text">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci reiciendis,
+            accusamus aliquam qui quia doloremque assumenda dolores facilis, fugit, reprehenderit
+            illum recusandae voluptate. Recusandae, sapiente sequi
+            exercitationem nostrum rerum a?</p>
+        </div>
+      </div>
+
+      <div id="services" class="services_list_box">
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</template>
+
+<script>
+import Header from '../components/HeaderComponent.vue';
+import Footer from '../components/FooterComponent.vue';
+
+export default {
+  name: 'MainPage',
+  components: {
+    Header,
+    Footer,
+  },
+};
+
+</script>
+
+<style scoped>
+#info{
+  padding: 0rem 7rem;
+}
+
+main{
+  background-color: #EEEADF;
+}
+
+.title_box {
+  display: flex;
+  width: 100%;
+  min-height: 300px;
+  background-color: #fff;
+}
+
+.title_text,
+.title_img {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title_text{
+  background-image: url("../assets/bg_title.png");
+  background-repeat: no-repeat;
+  background-size: 400px 350px;
+  background-position: center;
+}
+
+.title_text h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #000000;
+}
+
+.title_text h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #000000;
+}
+
+.title_img img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.7rem;
+}
+
+.promo_img{
+  width: 10px;
+  height: auto;
+  margin: 1.7rem;
+}
+
+</style>

@@ -31,19 +31,19 @@ public class SensorsController : BaseApiController {
     }
     
     [CheckAccount(AccountUserType.Admin)]
-    [HttpDelete, Route("api/accounts/{accountId:int}/sensors/{sensorId:int}")]
+    [HttpDelete, Route("api/accounts/{accountId:int}/devices/{deviceId:int}/sensors/{sensorId:int}")]
     public async Task DeleteSensor(int accountId, int deviceId, int sensorId) {
         await sensorsService.DeleteSensor(accountId, deviceId, sensorId);
     }
         
     [CheckAccount]
-    [HttpGet, Route("api/accounts/{accountId:int}/sensors/{sensorId:int}")]
+    [HttpGet, Route("api/accounts/{accountId:int}/devices/{deviceId:int}/sensors/{sensorId:int}")]
     public async Task<SensorDto> GetSensorDetails(int accountId, int deviceId, int sensorId) {
         return await sensorsService.GetSensorDetails(accountId, deviceId, sensorId);
     }
     
     [CheckAccount(AccountUserType.Admin)]
-    [HttpPost, Route("api/accounts/{accountId:int}/sensors/{sensorId:int}")]
+    [HttpPost, Route("api/accounts/{accountId:int}/devices/{deviceId:int}/sensors/{sensorId:int}")]
     public async Task EditSensor(int accountId, int deviceId,int sensorId, ModifySensorRequest request) {
         await sensorsService.EditSensorDetails(accountId, deviceId, sensorId, request);
     }

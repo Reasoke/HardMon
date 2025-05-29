@@ -11,6 +11,17 @@ namespace server.Services {
         Task<SubscriptionDto> GetSubscriptionDetails(int subscriptionId);
         Task AddSubscription(SubscriptionRequest request);
         Task ModifySubscriptionDetails(int subscriptionId, SubscriptionRequest request);
+
+        Task<IEnumerable<UserTypeDto>> GetUserTypes();
+        Task AddUserTypes(UserTypeRequest request);
+        Task DeleteUserType(int userTypeId);
+
+        Task<IEnumerable<AccountAdminDto>> GetAccounts();
+        Task DeleteAccount(int accountId);
+        
+        Task<IEnumerable<UserDto>> GetUsers();
+        Task DeleteUser(int userId);
+
         Task DeleteSubscription(int subscriptionId);
         Task<IEnumerable<SubscriptionSensorTypeDto>> GetSubscriptionSensorTypes();
         Task AddSubscriptionSensorType(SubscriptionSensorTypeRequest request);
@@ -67,8 +78,36 @@ namespace server.Services {
             await systemAdminRepository.DeleteSubscription(subscriptionId);
         }
 
-        
-        
+
+
+        public async Task<IEnumerable<UserTypeDto>> GetUserTypes() {
+            return await systemAdminRepository.GetUserTypes();
+        }
+        public async Task AddUserTypes(UserTypeRequest request) {
+            await systemAdminRepository.AddUserTypes(request);
+        }
+        public async Task DeleteUserType(int userTypeId) {
+            await systemAdminRepository.DeleteUserType(userTypeId);
+        }
+
+
+        public async Task<IEnumerable<AccountAdminDto>> GetAccounts() {
+            return await systemAdminRepository.GetAccounts();
+        }
+        public async Task DeleteAccount(int accountId) {
+            await systemAdminRepository.DeleteAccount(accountId);
+        }
+
+
+        public async Task<IEnumerable<UserDto>> GetUsers() {
+            return await systemAdminRepository.GetUsers();
+        }
+        public async Task DeleteUser(int userId) {
+            await systemAdminRepository.DeleteUser(userId);
+        }
+
+
+
         public async Task<IEnumerable<SubscriptionSensorTypeDto>> GetSubscriptionSensorTypes() {
             return await systemAdminRepository.GetSubscriptionSensorTypes();
         }

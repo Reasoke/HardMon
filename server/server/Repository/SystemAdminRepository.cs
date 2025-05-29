@@ -15,6 +15,17 @@ public interface ISystemAdminRepository {
     Task AddSubscription(SubscriptionRequest request);
     Task ModifySubscriptionDetails(int subscriptionId, SubscriptionRequest request);
     Task DeleteSubscription(int subscriptionId);
+
+    Task<IEnumerable<UserTypeDto>> GetUserTypes();
+    Task AddUserTypes(UserTypeRequest request);
+    Task DeleteUserType(int userTypeId);
+
+    Task<IEnumerable<AccountAdminDto>> GetAccounts();
+    Task DeleteAccount(int accountId);
+
+    Task<IEnumerable<UserDto>> GetUsers();
+    Task DeleteUser(int userId);
+
     Task<IEnumerable<SubscriptionSensorTypeDto>> GetSubscriptionSensorTypes();
     Task AddSubscriptionSensorType(SubscriptionSensorTypeRequest request);
     Task<SubscriptionSensorTypeDto> GetSubscriptionSensorTypeDetails(int subscriptionId, int sensorTypeId);
@@ -106,8 +117,52 @@ WHERE subscriptionId = @subscriptionId",
             new {subscriptionId});
     }
 
-    
-    
+
+
+    public async Task<IEnumerable<UserTypeDto>> GetUserTypes() {
+        return await GetConnection().QueryAsync<UserTypeDto>(
+            @"SELECT userTypeId as Id, userTypeName as Name
+FROM  UserType");
+    }
+    public async Task AddUserTypes(UserTypeRequest request) {
+        await GetConnection().ExecuteAsync(
+            @"INSERT INTO UserType (userTypeName) values (@name)",
+            new { name = request.Name});
+    }
+    public async Task DeleteUserType(int userTypeId) {
+        await GetConnection().ExecuteAsync(
+            @"DELETE FROM  UserType
+WHERE userTypeId = @userTypeId",
+            new { userTypeId });
+    }
+
+
+    public async Task<IEnumerable<AccountAdminDto>> GetAccounts() {
+        return await GetConnection().QueryAsync<AccountAdminDto>(
+            @"SELECT accountId as Id, accountName as Name
+FROM  Account");
+    }
+    public async Task DeleteAccount(int accountId) {
+        await GetConnection().ExecuteAsync(
+            @"DELETE FROM  Account
+WHERE accountId = @accountId",
+            new { accountId });
+    }
+
+    public async Task<IEnumerable<UserDto>> GetUsers() {
+        return await GetConnection().QueryAsync<UserDto>(
+            @"SELECT userId as Id, name, email, isSysAdmin
+FROM [User]");
+    }
+    public async Task DeleteUser(int userId) {
+        await GetConnection().ExecuteAsync(
+            @"DELETE FROM  User
+WHERE userId = @userId",
+            new { userId });
+    }
+
+
+
     public async Task<IEnumerable<SubscriptionSensorTypeDto>> GetSubscriptionSensorTypes() {
         return await GetConnection().QueryAsync<SubscriptionSensorTypeDto>(
             @"SELECT S.subscriptionId as SubscriptionId, S.subscriptionName as SubscriptionName,
