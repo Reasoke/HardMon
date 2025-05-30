@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             loginUser(emailInput.text.toString(), passwordInput.text.toString())
         }
 
-        findViewById<TextView>(R.id.registerText).setOnClickListener {
+        findViewById<TextView>(R.id.loginTitle).setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
